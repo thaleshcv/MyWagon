@@ -1,0 +1,26 @@
+---
+title: Default layout
+is_layout: false
+---
+<!DOCTYPE html>
+<html lang="{{ locale }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+
+    {% seo %}
+
+    {{ 'bundle.css' | stylesheet_tag }}
+    {{ 'bundle.js' | javascript_tag }}
+
+    {% if wagon %}
+      <script src="http://localhost:35729/livereload.js"></script>
+    {% endif %}
+  </head>
+  <body>
+    {% block 'main' %}
+    {% endblock %}
+  </body>
+</html>

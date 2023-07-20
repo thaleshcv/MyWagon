@@ -1,0 +1,25 @@
+---
+title: Home page
+published: true
+sections_content:
+  hero:
+    settings:
+      title: "Hello world!"
+      subtitle: "This is my first section in action"
+      background_image: "/samples/images/default.svg"
+    blocks: []
+
+  latest_projects:
+    settings:
+      title: "Our latest projects"
+    blocks: []
+---
+{% extends 'layouts/default' %}
+
+{% block 'main' %}
+
+  {% section 'hero' %}
+
+  {% section 'latest_projects' %}
+
+{% endblock %}

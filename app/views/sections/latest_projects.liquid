@@ -1,0 +1,80 @@
+---
+# Name of the section displayed in the editor UI
+# (only if keep_name is set to true)
+name: Latest projects
+
+# By default, the first text type setting will be used as
+# the name of the section in the editor UI.
+# To keep the name of the section instead, uncomment the following line.
+# keep_name: true
+
+# Icon of the section in the editor UI
+# Values: header, default, slide, text, image_text, list, footer
+icon: list
+
+# By default, the first image_picker type setting will be used
+# as the icon of the section in the editor UI.
+# To keep the icon of the section instead, uncomment the following line.
+# keep_icon: true
+
+# Definition of the settings:
+# A setting type can be one of the following values: text, image_picker, checkbox, radio, select, url, hint, content_type.
+# Please visit: https://doc.locomotivecms.com/docs/json-definition for more explanation.
+settings:
+- label: "Title"
+  id: title
+  type: text
+  # html: true
+  # line_break: true
+  
+- label: "Projects"
+  id: projects
+  type: content_type
+  
+# Definition of the blocks.
+# You can define as many types of blocks as you want.
+blocks: []
+
+# By default, in the editor UI, blocks will be listed below the "Content" title.
+# The title can be changed with the following property:
+# blocks_label: "My list of items"
+
+# Presets can be seen as different versions of a same section.
+# Useless if the section is not aimed to be used along with section_dropzone liquid tag
+presets:
+  - name: "Latest projects"
+    category: "Category"
+    settings:
+      title: "Consectetur illo rerum culpa."
+    blocks: []
+
+
+---
+<div id="{{ section.anchor_id }}" class="section latest-projects-section" {{ section.locomotive_attributes }}>
+  <h2 class="title is-2">{{ section.settings.title }}</h2>
+
+  <div class="columns is-multiline">
+    {% for project in contents.projects %}
+      <div class="column is-half">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="{% if project.image.url is blank %}https://bulma.io/images/placeholders/1280x960.png{% else %}{{ project.image.url | resize: '800x800#' }}{% endif %}" alt="{{ project.name }}">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p class="title is-4">{{ project.name }}</p>
+                <p class="subtitle is-6">{{ project.client }}</p>
+              </div>
+            </div>
+            <div class="content">
+              {{ project.description }}
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
